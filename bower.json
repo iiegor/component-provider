@@ -1,8 +1,16 @@
 {
   "name": "component-provider",
+  "version:": "0.1.0",
   "authors": [
     "Iegor Azuaga"
   ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "provides",
+    "interfaces"
+  ],
+  "main": "component-provider.html",
   "dependencies": {
     "polymer": "polymer/polymer#^1.4.0"
   }
