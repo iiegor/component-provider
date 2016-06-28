@@ -23,7 +23,7 @@ Polymer({
  * The app-shell interface
  */
 function ApplicationShellInterface() { }
-ApplicationShellInterface.prototype.showAlert() { }
+ApplicationShellInterface.prototype.showAlert = function() { };
 
 /**
  * Component

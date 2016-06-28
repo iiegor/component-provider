@@ -1,0 +1,9 @@
+{
+  "name": "component-provider",
+  "authors": [
+    "Iegor Azuaga"
+  ],
+  "dependencies": {
+    "polymer": "polymer/polymer#^1.4.0"
+  }
+}

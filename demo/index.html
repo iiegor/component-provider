@@ -1,0 +1,119 @@
+<!-- Imports -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../component-provider.html">
+
+<!-- Notification Manager -->
+<dom-module id="app-notification-manager">
+  <template>
+    <style>
+      :host {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+      }
+
+      #notification {
+        color: #fff;
+        background: rgb(51, 51, 51);
+        padding: 5px 8px;
+      }
+    </style>
+
+    <div id="notification" hidden$="[[hide]]">
+      <span>[[text]]</span>
+    </div>
+  </template>
+
+  <script>
+    Interfaces.NotificationManagerIface = function() {}
+    Interfaces.NotificationManagerIface.prototype.notify = function() {};
+
+    Polymer({
+      is: 'app-notification-manager',
+      properties: {
+        hide: {
+          type: Boolean,
+          value: true
+        },
+        text: String
+      },
+      provides: Interfaces.NotificationManagerIface,
+      behaviors: [Behaviors.ComponentBehavior],
+
+      notify: function(text) {
+        this.text = text;
+        this.hide = false;
+      }
+    });
+  </script>
+</dom-module>
+
+<!-- Formatted String -->
+<dom-module id="app-formatted-string">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+      
+      #text {
+        color: red;
+      }
+    </style>
+
+    <span id="text">[[text]]</span>
+  </template>
+
+  <script>
+    Interfaces.FormattedStringIface = function() {}
+    Interfaces.FormattedStringIface.prototype.setText = function() {};
+
+    Polymer({
+      is: 'app-formatted-string',
+      properties: {
+        text: String
+      },
+      provides: Interfaces.FormattedStringIface,
+      behaviors: [Behaviors.ComponentBehavior],
+
+      setText: function(text) {
+        this.text = text;
+
+        this.getInterface(Interfaces.NotificationManagerIface).notify('You are seeing this because the text changed :)');
+      }
+    });
+  </script>
+</dom-module>
+
+<!-- Application Shell -->
+<dom-module id="app-shell">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <app-notification-manager></app-notification-manager>
+    <app-formatted-string text="Hello world!"></app-formatted-string>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'app-shell',
+      behaviors: [Behaviors.ComponentBehavior],
+
+      ready: function() {
+        // Wait 2s and call the interface
+        setTimeout(function() {
+          this.getInterface(Interfaces.FormattedStringIface).setText('This text was changed!');
+        }.bind(this), 4000);
+      }
+    });
+  </script>
+</dom-module>
+
+<!-- Render -->
+<app-shell></app-shell>
