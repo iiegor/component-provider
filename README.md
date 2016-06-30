@@ -52,5 +52,13 @@ Polymer({
 });
 ```
 
+**Note:** Remember that you'll need to import the element to be able to *provide* an interface or use the *ComponentBehavior*.
+
+```html
+<link rel="import" href="bower_components/component-provider/component-provider.html">
+```
+
+See the [demo](https://github.com/iiegor/component-provider/blob/master/demo/index.html) to have a more clearer idea of how to use *component-provider*.
+
 ## Credits
 ``component-provider`` was inspired by a similar solution which is being used internally at `YouTube`, specifically in their new re-designed version using Polymer.
