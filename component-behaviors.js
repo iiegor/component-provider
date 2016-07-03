@@ -3,6 +3,7 @@
  */
 var Behaviors = {};
 
+/** @polymerBehavior */
 Behaviors.ComponentBehavior = {
   ready: function() {
     if (this.provides) {
