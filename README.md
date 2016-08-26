@@ -2,6 +2,11 @@
 
 `component-provider` offers extensibility across large Polymer applications with a very simple API.
 
+## Install
+```shell
+$ bower i --save iiegor/component-provider
+```
+
 ## Usage
 
 Let's say our application entry component is called `app-shell` and has the following code:
